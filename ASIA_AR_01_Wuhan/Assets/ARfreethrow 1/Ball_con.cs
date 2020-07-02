@@ -12,7 +12,7 @@ public class Ball_con : MonoBehaviour
     public float m_ThrowDirectionX = 0.17f;
     public float m_ThrowDirectionY = 0.67f;
 
-    public Vector3 m_BallCameraOffest = new Vector3(0f, -1.4f, 2f);
+    public Vector3 m_BallCameraOffest = new Vector3(0f, -1.4f, 3f);
 
     private Vector3 StartPosition;
     private Vector3 ThrowDirection;
@@ -51,7 +51,7 @@ public class Ball_con : MonoBehaviour
         else if(Input.GetMouseButtonUp(0))
         {
             endTime = Time.time;
-            duration = endTime = startTime;
+            duration = endTime - startTime;
             direction = Input.mousePosition - StartPosition;
             directionChosen = true;
         }
@@ -67,7 +67,6 @@ public class Ball_con : MonoBehaviour
                 ARCam.transform.right *direction.x *m_ThrowDirectionX);
 
             startTime = 0.0f;
-            endTime = 0.0f;
             duration = 0.0f;
 
             StartPosition = new Vector3(0, 0, 0);
@@ -76,10 +75,9 @@ public class Ball_con : MonoBehaviour
             throwStarted = false;
             directionChosen = false;
         }
-        if (Time.time - endTime >= 5 && Time.time - endTime <= 6) ;
-        {
+
+        if (Time.time - endTime >= 5 && Time.time - endTime <= 6)
             ResetBall();
-        }
     }
     public void ResetBall()
     {
